@@ -1,5 +1,4 @@
-from ui import MainWindow
+from pokeapp import mainloop
 
 if __name__=="__main__":
-    app=MainWindow()
-    app.mainloop()
+    mainloop()
