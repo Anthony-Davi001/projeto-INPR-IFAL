@@ -20,18 +20,20 @@ def mostrar_menu_escolha() -> int | None:
     print("="*40 + "\n")
     
     print("[1] guia para aprender sobre presente simples (simple present)")
-    print("[2] Se tornar um mestre do simple present")
-    print("[3] encerrar programa\n")
+    print("[2] Se tornar um mestre do simple present (jogo: batalha pokemon)")
+    print("[3] Interrogar um americano (jogo: detetive estrangeiro)")
+    print("[4] encerrar programa\n")
 
     try:
         escolha = int(input("escolha sua opção: "))
 
-        if not escolha in {1,2,3}:
-            print("por favor digite um número inteiro de 1 a 3.")
+        if not escolha in {1,2,3,4}:
+            print("por favor digite um número inteiro de 1 a 4.")
             input("ok: ")
             return None
         else:
             return escolha
     except:
-        print("por favor digite um número inteiro de 1 a 3.")
+        print("por favor digite um número inteiro de 1 a 4.")
         input("ok: ")
+        
