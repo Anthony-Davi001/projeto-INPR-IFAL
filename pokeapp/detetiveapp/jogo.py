@@ -1,34 +1,12 @@
 import random
 import sys
 from time import sleep 
+from .dialogos import criar_banco_questoes
 
-# --- Constantes do Jogo ---
-MAX_ERROS = 5  # Limite de erros permitido (5 chances)
-PONTOS_VITORIA = 7 # Pontuação necessária para vencer o caso
-NUM_OPCOES = 4 # Define o número de opções de múltipla escolha
-
-# --- Banco de Dados de Questões (APENAS INTERROGATIVAS) ---
-
-def criar_banco_questoes():
-    """Cria o banco de dados de perguntas (QUESTION) com distrações, focado no interrogatório."""
-    # Estrutura: {tipo, sujeito, verbo_base, complemento, tema, resposta_correta, resposta_suspeito}
-    return [
-        # perguntas e respostas
-        {"tipo": "QUESTION", "sujeito": "you", "verbo_base": "live", "complemento": "alone in that house?", "tema": "Suspeito", "resposta_correta": "Do you live alone in that house?", "resposta_suspeito": "No, I live with my cat, Mittens."},
-        {"tipo": "QUESTION", "sujeito": "Mr. Smith", "verbo_base": "work", "complemento": "on weekends?", "tema": "Rotina", "resposta_correta": "Does Mr. Smith work on weekends?", "resposta_suspeito": "Yes, he always works on Saturday mornings."},
-        {"tipo": "QUESTION", "sujeito": "the children", "verbo_base": "know", "complemento": "anything about the event?", "tema": "Testemunhas", "resposta_correta": "Do the children know anything about the event?", "resposta_suspeito": "I think they do, they were playing nearby."},
-        {"tipo": "QUESTION", "sujeito": "she", "verbo_base": "tell", "complemento": "you where she went?", "tema": "Relacionamento", "resposta_correta": "Does she tell you where she went?", "resposta_suspeito": "No, she never tells me her plans."},
-        {"tipo": "QUESTION", "sujeito": "it", "verbo_base": "happen", "complemento": "every night?", "tema": "Frequência", "resposta_correta": "Does it happen every night?", "resposta_suspeito": "No, only on Tuesdays and Thursdays."},
-        {"tipo": "QUESTION", "sujeito": "they", "verbo_base": "need", "complemento": "a lawyer?", "tema": "Procedimento", "resposta_correta": "Do they need a lawyer?", "resposta_suspeito": "Absolutely, they asked for one immediately."},
-        {"tipo": "QUESTION", "sujeito": "the car", "verbo_base": "have", "complemento": "any damage?", "tema": "Veículo", "resposta_correta": "Does the car have any damage?", "resposta_suspeito": "Yes, it has a dent on the passenger side."},
-        {"tipo": "QUESTION", "sujeito": "your sister", "verbo_base": "see", "complemento": "anyone suspicious?", "tema": "Testemunha", "resposta_correta": "Does your sister see anyone suspicious?", "resposta_suspeito": "She saw a man running across the street."},
-        {"tipo": "QUESTION", "sujeito": "the security cameras", "verbo_base": "record", "complemento": "the entrance?", "tema": "Segurança", "resposta_correta": "Do the security cameras record the entrance?", "resposta_suspeito": "Unfortunately, they don't record the back door."},
-        {"tipo": "QUESTION", "sujeito": "the suspect", "verbo_base": "have", "complemento": "a weapon?", "tema": "Crime", "resposta_correta": "Does the suspect have a weapon?", "resposta_suspeito": "I think he keeps it hidden in his jacket."},
-        {"tipo": "QUESTION", "sujeito": "you", "verbo_base": "know", "complemento": "the victim?", "tema": "Relacionamento", "resposta_correta": "Do you know the victim?", "resposta_suspeito": "I saw him once or twice at the cafe."},
-        {"tipo": "QUESTION", "sujeito": "the witnesses", "verbo_base": "say", "complemento": "the same thing?", "tema": "Testemunhas", "resposta_correta": "Do the witnesses say the same thing?", "resposta_suspeito": "No, their stories conflict on the timeline."},
-    ]
-
-# --- Funções de Formatação e Opções ---
+# constantes do Jogo 
+MAX_ERROS = 5 
+PONTOS_VITORIA = 7
+NUM_OPCOES = 4
 
 def gerar_opcoes(frase):
     """Gera 4 opções de múltipla escolha (A, B, C, D) incluindo a correta e 3 distrações."""
@@ -75,8 +53,8 @@ def formatar_desafio(frase_dict):
     complemento = frase_dict['complemento']
     tema = frase_dict['tema']
 
-    print(f"🎤 INTERROGATÓRIO ({tema}): Você precisa pressionar o entrevistado.")
-    return f"Qual é a **PERGUNTA** correta para saber sobre: **({sujeito} / {verbo_base} / {complemento}?)**"
+    print(f"INTERROGATÓRIO ({tema}): Você precisa pressionar o entrevistado.")
+    return f"Qual é a PERGUNTA correta para saber sobre: *({sujeito} / {verbo_base} / {complemento}?)*"
 
 # loop principal do jogo
 def iniciar_jogo_detetive():
@@ -126,14 +104,14 @@ def iniciar_jogo_detetive():
             
             # Exibe a Resposta do Suspeito
             print(f"\n PERGUNTA CORRETA! O suspeito foi pressionado.")
-            print(f"> Detetive: **{opcoes_dict[letra_correta]}**") 
+            print(f"> Detetive: {opcoes_dict[letra_correta]}") 
             sleep(0.5)
-            print(f" Entrevistado: **{frase_atual['resposta_suspeito']}**")
+            print(f" Entrevistado: {frase_atual['resposta_suspeito']}")
             
         else:
             erros += 1
-            print("\n❌ ERRO GRAMATICAL! O entrevistado percebeu a falha e está menos cooperativo.")
-            print(f"A pergunta correta era: **{opcoes_dict[letra_correta]}**")
+            print("\n ERRO GRAMATICAL! O entrevistado percebeu a falha e está menos cooperativo.")
+            print(f"A pergunta correta era: {opcoes_dict[letra_correta]}")
             
             # Dica
             if 'Does' in opcoes_dict[letra_correta]:
@@ -148,10 +126,6 @@ def iniciar_jogo_detetive():
         print("caso foi resolvido! Você obteve todas as informações e conseguiu concluir quem era o culpado.")
     else:
         print(f"o caso foi arquivado. Você excedeu o limite de {MAX_ERROS} erros. O entrevistado parou de cooperar. Tente novamente!")
-    print(f"Pontuação Final: **{pontos} / {PONTOS_VITORIA}** acertos.")
+    print(f"Pontuação Final: *{pontos} / {PONTOS_VITORIA}* acertos.")
     print("=======================================================")
 
-
-# --- Executa o Jogo ---
-if __name__ == "__main__":
-    iniciar_jogo_detetive()
