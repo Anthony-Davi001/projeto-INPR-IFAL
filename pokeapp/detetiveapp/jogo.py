@@ -83,7 +83,7 @@ def iniciar_jogo_detetive():
     """Lógica principal do jogo de Múltipla Escolha."""
     # 1. introdução
     print("\n=======================================================")
-    print("  BEM-VINDO AO DETETIVE ESTRANGEIRO (INTERROGATÓRIO) ")
+    print("        DETETIVE ESTRANGEIRO (INTERROGATÓRIO) ")
     print("=======================================================")
     print("Você é um detetive brasileiro, encarregado de interrogar um suspeito americano.")
     sleep(1.5)
@@ -91,7 +91,7 @@ def iniciar_jogo_detetive():
     sleep(1.5)
     print("Formule a pergunta correta e você receberá uma resposta. Se errar, o suspeito ganha tempo!")
     
-    # 2. CONFIGURAÇÕES E REGRAS
+    # configuração inicial
     banco_de_frases = criar_banco_questoes()
     random.shuffle(banco_de_frases)
     frases_disponiveis = banco_de_frases.copy()
@@ -99,28 +99,21 @@ def iniciar_jogo_detetive():
     pontos = 0
     erros = 0
     
-    print("\n--- INSTRUÇÕES ---")
-    print(f"Objetivo: Acerte **{PONTOS_VITORIA}** perguntas para resolver o caso.")
+    print("\n--- instruções ---")
+    print(f"Objetivo: Acerte *{PONTOS_VITORIA}* perguntas para resolver o caso.")
     print(f"Regras: Escolha a opção (A, B, C ou D) que forma a frase INTERROGATIVA correta.")
-    print(f"Limite de Erros: **{MAX_ERROS}** ❌ (5 chances)\n")
+    print(f"Limite de Erros: *{MAX_ERROS}* (5 chances)\n")
 
     # 3. LOOP PRINCIPAL
     while pontos < PONTOS_VITORIA and erros < MAX_ERROS:
-        
-        # Recarrega as questões se acabarem
-        if not frases_disponiveis:
-            print("\n🚨 Recarregando o banco de questões! 🚨")
-            frases_disponiveis = banco_de_frases.copy()
-            random.shuffle(frases_disponiveis)
-        
         frase_atual = frases_disponiveis.pop()
         opcoes_dict, letra_correta = gerar_opcoes(frase_atual)
         
-        print(f"\n--- 🗣️ TURNO {pontos + 1}/{PONTOS_VITORIA} | Erros: {erros}/{MAX_ERROS} ❌ ---") 
+        print(f"\n--- Turno: {pontos + 1}/{PONTOS_VITORIA} | Erros: {erros}/{MAX_ERROS}  ---") 
         print(formatar_desafio(frase_atual))
         
         # Exibe as opções
-        print("\n**Opções de Interrogatório:**")
+        print("\n*Opções de Interrogatório:*")
         for letra, opcao in opcoes_dict.items():
             print(f"  {letra}: {opcao}")
         
@@ -132,10 +125,10 @@ def iniciar_jogo_detetive():
             pontos += 1
             
             # Exibe a Resposta do Suspeito
-            print(f"\n✅ PERGUNTA CORRETA! O suspeito foi pressionado.")
+            print(f"\n PERGUNTA CORRETA! O suspeito foi pressionado.")
             print(f"> Detetive: **{opcoes_dict[letra_correta]}**") 
             sleep(0.5)
-            print(f"📜 Entrevistado: **{frase_atual['resposta_suspeito']}**")
+            print(f" Entrevistado: **{frase_atual['resposta_suspeito']}**")
             
         else:
             erros += 1
