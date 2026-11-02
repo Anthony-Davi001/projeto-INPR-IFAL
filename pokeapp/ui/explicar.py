@@ -36,7 +36,7 @@ def explicar_presente_simples() -> None:
     sleep(0.8)
     input("pressione ENTER para continuar:\n")
 
-    print("\n2. A Regra do 'S' (He, She, It) ⚠️")
+    print("\n2. A Regra do 'S' (He, She, It)")
     print("Quando o sujeito é a *terceira pessoa do singular* (he, she, it), o verbo deve receber um acréscimo no final:")
     sleep(0.8)
     print("  * Geral: Adiciona-se *-s* (Ex: She *wants* a coffee).")

@@ -9,7 +9,6 @@ MAX_VIDAS = 4
 PONTOS_VITORIA = 7 
 
 # --- Funções Auxiliares ---
-
 def exibir_guia_rapido():
     print("\n=================================================================")
     print("   GUIA RÁPIDO PARA BATALHA: SIMPLE PRESENT (Regras de Ataque)  ")
@@ -68,7 +67,6 @@ def iniciar_jogo_pokemon() -> None:
         
         print(f"\n--- TURNO {pontos + 1}/{PONTOS_VITORIA} ---") 
         
-        # Formatação
         print(f"O seu time precisa agir! {formatar_frase_batalha(frase_atual)}") 
         
         # Pede a resposta, garantido que difença de maiusculo, minusculo e espaços redundantes afete o resultado 
