@@ -1,7 +1,7 @@
 # Projeto final - INPR IFAL
 ### Aluno: Anthony Davi Santos Vieira
 
-Projeto feito para obtenção de nota na disciplina de Introdução a programação no Intituto federal de Alagoas.
+Projeto feito para obtenção de nota na disciplina de Introdução a programação no Instituto Federal de Alagoas.
 
 ---
 
